@@ -15,7 +15,7 @@
 
 # web-perf
 
-<!-- description -->
+Indicators for web performance
 
 ## Install
 
@@ -25,9 +25,53 @@ $ npm i web-perf
 
 ## Usage
 
+### new CPU(options)
+
+- **options** `Object`
+  - **samplePeriod** `number` The time span of a single sample period in milliseconds
+
 ```js
-import web_perf from 'web-perf'
+const {CPU} = require('web-perf')
+
+const cpu = new CPU({
+  // It will take the sample in every 50 milliseconds
+  samplePeriod: 50
+})
+
+// Record the profile for 100 periods
+cpu.profile(100)
+.then(report => {
+  // Print the report
+  console.log(report)
+})
 ```
+
+### cpu.profile(periods): Promise<CPUReport>
+
+- **periods** `number` the number of periods the profile is to record
+
+The returned promise will be solved when the profiling completes, and returns the recorded reports.
+
+```ts
+interface CPUReport {
+  samplePeriod: number
+  records: Array<CPURecord>
+}
+
+interface CPURecord {
+  // The close range of the begin period number and the end period number.
+  // The period number starts with `0`
+  period: [number, number]
+  // If the event-loop(CPU) stucked during the period, this property will be true
+  frozen: boolean
+  // The event loop latency
+  latency: number
+}
+```
+
+### How `CPU` works
+
+It will delay(setTimeout) `options.samplePeriod` to take the first profile sample. If the event-loop called before the second sample ought to be taken, the first sample is marked as `NOT FROZEN`
 
 ## License
 
