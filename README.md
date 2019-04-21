@@ -46,7 +46,7 @@ cpu.profile(100)
 })
 ```
 
-### cpu.profile(periods): Promise<CPUReport>
+### cpu.profile(periods): Promise&lt;CPUReport&gt;
 
 - **periods** `number` the number of periods the profile is to record
 
