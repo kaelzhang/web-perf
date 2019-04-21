@@ -1,7 +1,7 @@
 {
   "name": "web-perf",
-  "version": "1.0.0",
-  "description": "web-perf",
+  "version": "0.1.0",
+  "description": "Web performance indicator",
   "main": "src/index.js",
   "scripts": {
     "test": "nyc ava --timeout=10s",
