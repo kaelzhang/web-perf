@@ -7,6 +7,11 @@ export const now = typeof performance !== 'undefined'
 
 const FREQUENCY = 16.66
 
-export const requestAnimationFrame = isFunction(window.requestAnimationFrame)
-  ? callback => window.requestAnimationFrame(callback)
-  : setTimeout(callback, FREQUENCY)
+const raf = typeof requestAnimationFrame !== 'undefined'
+  && isFunction(requestAnimationFrame)
+    ? callback => requestAnimationFrame(callback)
+    : setTimeout(callback, FREQUENCY)
+
+export {
+  raf as requestAnimationFrame
+}

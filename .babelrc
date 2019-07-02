@@ -1,9 +1,30 @@
 {
-  "presets": [
-    ["@babel/preset-env", {
-      "targets": {
-        "node": "8"
-      }
-    }]
-  ]
+  "env": {
+    "cjs": {
+      "presets": [
+        [
+          "@babel/preset-env", {
+            "targets": "> 0.25%, not dead"
+          }
+        ]
+      ]
+    },
+    "es": {
+      "plugins": [
+        "@babel/plugin-transform-arrow-functions",
+        "@babel/plugin-transform-block-scoping"
+      ]
+    },
+    "ava": {
+      "presets": [
+        [
+          "@babel/preset-env", {
+            "targets": {
+              "node": true
+            }
+          }
+        ]
+      ]
+    }
+  }
 }

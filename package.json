@@ -1,11 +1,13 @@
 {
   "name": "web-perf",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Web performance indicator",
-  "module": "src/index.js",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:cjs": "BABEL_ENV=cjs babel --out-dir lib src",
+    "build:es": "BABEL_ENV=es babel --out-dir es src",
     "prepublishOnly": "npm run build",
     "test": "NODE_DEBUG=web-perf nyc ava --timeout=10s --verbose",
     "test:dev": "NODE_DEBUG=web-perf nyc ava --timeout=10s --verbose && npm run report:dev",
@@ -17,7 +19,7 @@
     "report:open": "open coverage/index.html"
   },
   "files": [
-    "src/",
+    "es/",
     "lib/"
   ],
   "repository": {
@@ -46,6 +48,8 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/plugin-transform-block-scoping": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
     "@ostai/eslint-config": "^3.0.0",

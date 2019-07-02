@@ -5,6 +5,7 @@
 /package-lock.json
 /*.tgz
 /lib
+/es
 
 
 # Numerous always-ignore extensions

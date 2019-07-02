@@ -8,6 +8,7 @@ let frame = 0
 let stopped = true
 let stopping = false
 let fps = 0
+let callback = () => {}
 
 const SECOND = 1000
 
@@ -22,6 +23,7 @@ const loop = () => {
     fps = frame * SECOND / duration
     frame = 0
     last = current
+    callback(fps)
   }
 
   if (stopping) {
@@ -36,6 +38,10 @@ const loop = () => {
 const exports = {
   get value () {
     return fps
+  },
+
+  set callback (fn) {
+    callback = fn
   },
 
   stop () {

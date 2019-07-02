@@ -23,7 +23,7 @@ Indicators for web performance
 $ npm i web-perf
 ```
 
-## Usage
+## fps
 
 ```js
 import {
@@ -31,6 +31,14 @@ import {
 } from 'web-perf'
 
 console.log(fps.value)  // 59.5
+
+fps.stop()    // stop collecting frames
+
+fps.start()   // start / restart collecting
+
+fps.callback = value => {
+  // invoked every second
+}
 ```
 
 ## License
