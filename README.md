@@ -30,6 +30,8 @@ import {
   fps
 } from 'web-perf'
 
+fps.start()
+
 console.log(fps.value)  // 59.5
 
 fps.stop()    // stop collecting frames

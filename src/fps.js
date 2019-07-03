@@ -3,6 +3,8 @@ import {
   requestAnimationFrame
 } from './util'
 
+let span = 1000
+
 let last = now()
 let frame = 0
 let stopped = true
@@ -10,8 +12,7 @@ let stopping = false
 let fps = 0
 let callback = () => {}
 
-const SECOND = 1000
-
+// Yes this function is ugly and simple
 const loop = () => {
   const current = now()
 
@@ -19,8 +20,8 @@ const loop = () => {
 
   const duration = now - last
 
-  if (duration > SECOND) {
-    fps = frame * SECOND / duration
+  if (duration > span) {
+    fps = frame * span / duration
     frame = 0
     last = current
     callback(fps)
@@ -44,6 +45,10 @@ const exports = {
     callback = fn
   },
 
+  set span (s) {
+    span = s
+  }
+
   stop () {
     stopping = true
   },
@@ -64,7 +69,5 @@ const exports = {
     }
   }
 }
-
-exports.start()
 
 export default exports
