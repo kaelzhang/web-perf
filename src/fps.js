@@ -47,7 +47,7 @@ const exports = {
 
   set span (s) {
     span = s
-  }
+  },
 
   stop () {
     stopping = true
